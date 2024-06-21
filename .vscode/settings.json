@@ -1,0 +1,16 @@
+{
+  "workbench.editor.customLabels.patterns": {
+    "**/src/routes/**/+layout.svelte": "🔲${dirname(1)}/${dirname} - Layout",
+    "**/src/routes/**/+layout.server.ts": "${dirname} - Layout Server",
+    "**/src/routes/**/+layout.reset.svelte": "${dirname} - Layout Reset",
+    "**/src/routes/**/+page.svelte": "🟥${dirname(1)}/${dirname} - Page",
+    "**/src/routes/**/+page.server.ts": "${dirname} - Page Server",
+    "**/src/routes/**/+server.ts": "🔵${dirname(1)}/${dirname} - Server route",
+    "**/src/routes/**/+page.ts": "${dirname} - Page Script",
+    "**/src/routes/**/+error.svelte": "${dirname} - Error",
+    "**/src/routes/**/+layout.ts": "${dirname} - Layout-ts"
+  },
+  "prettier.documentSelectors": ["**/*.svelte"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "svelte.enable-ts-plugin": true
+}
