@@ -1,0 +1,3 @@
+bun run commitlint ${1}
+bunx lint-staged --concurrent false
+echo "🚀 pre-commit hook finished"  
