@@ -1,42 +1,25 @@
 <script lang="ts">
 	import { RangeCalendar as RangeCalendarPrimitive } from "bits-ui";
 	import * as RangeCalendar from "./index.js";
-	import { cn } from "$lib/utils.js";
-
-	type $$Props = RangeCalendarPrimitive.Props;
-	type $$Events = RangeCalendarPrimitive.Events;
-
-
-	interface Props {
-		value?: $$Props["value"];
-		placeholder?: $$Props["placeholder"];
-		weekdayFormat?: $$Props["weekdayFormat"];
-		startValue?: $$Props["startValue"];
-		class?: $$Props["class"];
-		[key: string]: any
-	}
+	import { cn, type WithoutChildrenOrChild } from "$lib/utils.js";
 
 	let {
-		value = $bindable(undefined),
-		placeholder = $bindable(undefined),
+		ref = $bindable(null),
+		value = $bindable(),
+		placeholder = $bindable(),
 		weekdayFormat = "short",
-		startValue = $bindable(undefined),
-		class: className = undefined,
-		...rest
-	}: Props = $props();
-	
+		class: className,
+		...restProps
+	}: WithoutChildrenOrChild<RangeCalendarPrimitive.RootProps> = $props();
 </script>
 
 <RangeCalendarPrimitive.Root
-	on:keydown
+	bind:ref
 	bind:value
 	bind:placeholder
-	bind:startValue
 	{weekdayFormat}
 	class={cn("p-3", className)}
-	{...rest}
-	
-	
+	{...restProps}
 >
 	{#snippet children({ months, weekdays })}
 		<RangeCalendar.Header>
@@ -45,11 +28,11 @@
 			<RangeCalendar.NextButton />
 		</RangeCalendar.Header>
 		<RangeCalendar.Months>
-			{#each months as month}
+			{#each months as month (month)}
 				<RangeCalendar.Grid>
 					<RangeCalendar.GridHead>
 						<RangeCalendar.GridRow class="flex">
-							{#each weekdays as weekday}
+							{#each weekdays as weekday (weekday)}
 								<RangeCalendar.HeadCell>
 									{weekday.slice(0, 2)}
 								</RangeCalendar.HeadCell>
@@ -57,11 +40,11 @@
 						</RangeCalendar.GridRow>
 					</RangeCalendar.GridHead>
 					<RangeCalendar.GridBody>
-						{#each month.weeks as weekDates}
+						{#each month.weeks as weekDates (weekDates)}
 							<RangeCalendar.GridRow class="mt-2 w-full">
-								{#each weekDates as date}
-									<RangeCalendar.Cell {date}>
-										<RangeCalendar.Day {date} month={month.value} />
+								{#each weekDates as date (date)}
+									<RangeCalendar.Cell {date} month={month.value}>
+										<RangeCalendar.Day />
 									</RangeCalendar.Cell>
 								{/each}
 							</RangeCalendar.GridRow>
