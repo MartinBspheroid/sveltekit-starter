@@ -1,0 +1,26 @@
+# Node modules
+node_modules
+
+# Git files
+.git
+.gitignore
+
+# VSCode specific files
+.vscode
+
+# Husky files (if not needed in image)
+.husky
+
+# Build output directories (will confirm actual directory later)
+build
+dist
+
+# OS-specific files
+.DS_Store
+
+# Backup files
+*.bak
+
+# Docker files
+Dockerfile
+.dockerignore
