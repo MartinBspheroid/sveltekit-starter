@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div class="flex flex-col min-h-screen">
-  <Topbar showSearch={true} />
+  <Topbar  />
 
   <main class="flex-1 p-8 bg-muted/30">
     <div class="container mx-auto">
