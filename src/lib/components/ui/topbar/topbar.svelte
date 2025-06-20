@@ -1,6 +1,6 @@
 <script lang="ts">
   import {
-    NavigationMenu,
+    NavigationMenuRoot,
     NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
@@ -16,7 +16,7 @@
     SheetDescription,
   } from '$lib/components/ui/sheet';
   import { IsMobile } from '$lib/hooks/is-mobile.svelte';
-  import { MenuIcon } from 'lucide-svelte/icons/menu';
+  import  Menu from 'lucide-svelte/icons/menu';
   import Button from '$lib/components/ui/button/button.svelte';
   import {
     Command,
@@ -32,17 +32,19 @@
   const isMobile = new IsMobile();
 </script>
 
-<div class="flex items-center justify-between p-4 bg-background border-b h-16"> {/* Main Topbar container styling */}
-  <div class="flex items-center"> {/* Navigation Area (Left) */}
-    {#if $isMobile.value}
+<div class="flex items-center justify-between p-4 bg-background border-b h-16"> 
+  <!-- {/* Main Topbar container styling */} -->
+  <div class="flex items-center">
+     <!-- {/* Navigation Area (Left) */} -->
+    {#if isMobile.current}
       <Sheet>
-        <SheetTrigger asChild let:builder>
-          {/* Mobile Navigation Trigger: Styled Button */}
-          <Button builders={[builder]} variant="ghost" size="icon" class="mr-2 text-foreground hover:bg-muted">
-            <MenuIcon class="h-6 w-6" />
+        <SheetTrigger>
+          <!-- {/* Mobile Navigation Trigger: Styled Button */} -->
+          <Button  variant="ghost" size="icon" class="mr-2 text-foreground hover:bg-muted">
+            <Menu class="h-6 w-6" />
           </Button>
         </SheetTrigger>
-        {/* Mobile Navigation Panel: Styled SheetContent */}
+        <!-- {/* Mobile Navigation Panel: Styled SheetContent */} -->
         <SheetContent side="left" class="bg-background p-6">
           <SheetHeader class="mb-4">
             <SheetTitle class="text-lg font-semibold text-foreground">Menu</SheetTitle>
@@ -51,7 +53,7 @@
             </SheetDescription>
           </SheetHeader>
           <div class="flex flex-col space-y-3">
-            {/* Styled Mobile Navigation Links */}
+            <!-- {/* Styled Mobile Navigation Links */} -->
             <a href="/" class="text-base text-foreground hover:text-primary hover:underline underline-offset-2">Item One - Link A</a>
             <a href="/" class="text-base text-foreground hover:text-primary hover:underline underline-offset-2">Item One - Link B</a>
             <a href="/" class="text-base text-foreground hover:text-primary hover:underline underline-offset-2">Item Two - Link C</a>
@@ -60,8 +62,8 @@
         </SheetContent>
       </Sheet>
     {:else}
-      {/* Desktop Navigation: Styled NavigationMenu */}
-      <NavigationMenu>
+      <!-- {/* Desktop Navigation: Styled NavigationMenu */} -->
+      <NavigationMenuRoot>
         <NavigationMenuList class="space-x-1">
           <NavigationMenuItem>
             <NavigationMenuTrigger class="text-sm font-medium text-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 px-3 py-2 rounded-md">
@@ -86,13 +88,15 @@
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
-      </NavigationMenu>
+      </NavigationMenuRoot>
     {/if}
   </div>
 
   {#if showSearch}
-    <div class="flex-1 flex justify-center px-4"> {/* Search Bar Area (Center) */}
-      {/* Styled Search Bar (Command) */}
+  <!-- {/* Search Bar Area (Center) */} -->
+   
+    <div class="flex-1 flex justify-center px-4">
+   <!-- {/* Styled Search Bar (Command) */}    -->
       <Command class="rounded-lg border border-border shadow-sm w-full max-w-xs sm:max-w-sm md:max-w-md bg-background text-foreground">
         <CommandInput placeholder="Type a command or search..." class="h-9 text-sm border-0 focus:ring-0 placeholder:text-muted-foreground" />
         <CommandList class="max-h-[300px] overflow-y-auto overflow-x-hidden">
@@ -106,13 +110,15 @@
       </Command>
     </div>
   {:else}
-    <div class="flex-1"></div> {/* Spacer to push auth section to the right */}
+    <div class="flex-1"></div>
+     <!-- {/* Spacer to push auth section to the right */} -->
   {/if}
 
-  <div class="flex items-center"> {/* Auth/User Profile Area (Right) */}
-    {/* Placeholder for User Profile / Auth section - Styled */}
+  <div class="flex items-center"> 
+    <!-- {/* Auth/User Profile Area (Right) */} -->
+    <!-- {/* Placeholder for User Profile / Auth section - Styled */} -->
     <div class="w-10 h-10 bg-muted rounded-full flex items-center justify-center text-muted-foreground">
-      {/* Could be an icon or initials */}
+      <!-- {/* Could be an icon or initials */} -->
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     </div>
   </div>
